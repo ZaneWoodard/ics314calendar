@@ -103,5 +103,8 @@ public class VObject {
     public boolean addDescription(String description) {
         return addContentLine("DESCRIPTION", description);
     }
+    public boolean addLocation(String location) {
+        return addContentLine("LOCATION", location);
+    }
     
 }
