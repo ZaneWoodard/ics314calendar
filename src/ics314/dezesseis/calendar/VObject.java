@@ -10,20 +10,16 @@ public class VObject {
     public final static String PRODID = "Team Dezessis - Calendaring Project";
     public final static String VERSION = "0.0.1";
     public final static String CRLF = "\r\n"; //Used to terminate lines
-    
+
     private VObjectType objType;
     private Map<String, Object> content;
    
     private List<VObject> children;
     
-    public VObject(VObjectType type, VObject parent) {
+    public VObject(VObjectType type) {
         this.objType = type;
         this.content = new HashMap<String, Object>();
         this.children = new ArrayList<VObject>();
-    }
-    
-    public VObject(VObjectType type) {
-        this(type, null);
     }
     
     /**
@@ -63,7 +59,7 @@ public class VObject {
     public String getTextRepresentation() {
         StringBuilder text = new StringBuilder();
         //Add object begin content line
-        text.append("BEGIN:").append("V").append(objType.name());
+        text.append("BEGIN:").append("V").append(objType.name()).append(CRLF);
         
         //Calendar types require additional header information
         if(objType==VObjectType.CALENDAR) {
