@@ -8,7 +8,7 @@ import java.util.Map;
 public class VObject {
     //The following are constants used for .ics file output
     public final static String PRODID = "Team Dezessis - Calendaring Project";
-    public final static String VERSION = "0.0.1";
+    public final static String VERSION = "2.0"; //THe iCal spec version required
     public final static String CRLF = "\r\n"; //Used to terminate lines
 
     private VObjectType objType;
