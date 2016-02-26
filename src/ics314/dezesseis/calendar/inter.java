@@ -59,8 +59,8 @@ public class inter {
        	event.addDtStamp(stamp);
        	event.addLocation(place);
        	calendar.addChild(event);
-       //need to change a the dir
-       	File out = new File("/Users/NikoBenick/Desktop/test.ics");
+       //System.getProperty("user.home") return User home directory
+       	File out = new File(System.getProperty("user.home")+"/Desktop/test.ics");
        	try(FileOutputStream outStream = new FileOutputStream(out)) {
        		outStream.write(calendar.getTextRepresentation().getBytes());
        		outStream.close();
