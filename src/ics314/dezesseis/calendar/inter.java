@@ -9,15 +9,7 @@ import java.util.Scanner;
 
 public class inter {
     public static void main(String[] args) {
-    	String summary = "";
-    	String location = "";
-    	String beginDay = "";
-    	String endDay = "";
-    	String beginTime ="";
-    	String endTime="";
-    	String place ="";
-    	String description ="";
-    	boolean done = false;
+
     	String input = "";
     	Scanner userInput =new Scanner(System.in);
     	InputCheck inputCheck = new InputCheck();
@@ -32,18 +24,18 @@ public class inter {
         	System.exit(0);
 
         System.out.print("Please, Enter a title of the event: ");
-       	summary = userInput.nextLine();
+       	String summary = userInput.nextLine();
        	summary = summary.trim();
-       	beginDay = inputCheck.CheckDate("beginning")+"T";
-       	beginTime = inputCheck.Checktime("beginning")+"00";
-       	endDay = inputCheck.CheckDate("ending")+"T";
-       	endTime= inputCheck.Checktime("ending")+"00";
+       	String beginDay = inputCheck.CheckDate("beginning")+"T";
+       	String beginTime = inputCheck.Checktime("beginning")+"00";
+       	String endDay = inputCheck.CheckDate("ending")+"T";
+        String endTime= inputCheck.Checktime("ending")+"00";
        	System.out.print("Please, enter the location of the event:");
        	place = userInput.nextLine();
        	place = place.trim();
        	System.out.println("Please, enter a description of the event:");
        	System.out.print("->");
-       	description = userInput.nextLine();
+       	String description = userInput.nextLine();
        	description = description.trim();
        	
        	//date stamp;
@@ -59,6 +51,7 @@ public class inter {
        	event.addDtStamp(stamp);
        	event.addLocation(place);
        	calendar.addChild(event);
+       	userInput.close();
        //System.getProperty("user.home") return User home directory
        	File out = new File(System.getProperty("user.home")+"/Desktop/test.ics");
        	try(FileOutputStream outStream = new FileOutputStream(out)) {
