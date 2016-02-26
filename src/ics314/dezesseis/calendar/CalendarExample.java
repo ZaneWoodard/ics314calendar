@@ -26,7 +26,8 @@ public class CalendarExample {
         
         calendar.addChild(event);
         
-        File out = new File("test.ics");
+        //File out = new File("test.ics");
+        File out = new File(System.getProperty("user.home")+"/Desktop/test.ics");
         try(FileOutputStream outStream = new FileOutputStream(out)) {
             outStream.write(calendar.getTextRepresentation().getBytes());
             outStream.close();
