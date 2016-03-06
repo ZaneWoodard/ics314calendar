@@ -110,7 +110,7 @@ public class VObject {
     /**
      * @return Returns the PRODID string constant
      */
-    public static String getProdid() {
+    public static String getProdID() {
         return PRODID;
     }
 
@@ -124,7 +124,7 @@ public class VObject {
     /**
      * @return Returns the CRLF(new line) string constant
      */
-    public static String getCrlf() {
+    public static String getCRLF() {
         return CRLF;
     }
 
