@@ -7,9 +7,9 @@ import java.util.Map;
 
 public class VObject {
     //The following are constants used for .ics file output
-    public final static String PRODID = "Team Dezessis - Calendaring Project";
-    public final static String VERSION = "2.0"; //THe iCal spec version required
-    public final static String CRLF = "\r\n"; //Used to terminate lines
+    private final static String PRODID = "Team Dezessis - Calendaring Project";
+    private final static String VERSION = "2.0"; //THe iCal spec version required
+    private final static String CRLF = "\r\n"; //Used to terminate lines
 
     private VObjectType objType;
     private Map<String, Object> content;
@@ -105,6 +105,48 @@ public class VObject {
     }
     public boolean addLocation(String location) {
         return addContentLine("LOCATION", location);
+    }
+
+    /**
+     * @return Returns the PRODID string constant
+     */
+    public static String getProdid() {
+        return PRODID;
+    }
+
+    /**
+     * @return Returns the VERSION string constant
+     */
+    public static String getVersion() {
+        return VERSION;
+    }
+
+    /**
+     * @return Returns the CRLF(new line) string constant
+     */
+    public static String getCrlf() {
+        return CRLF;
+    }
+
+    /**
+     * @return Returns the type of the object, see VObjectType
+     */
+    public VObjectType getObjType() {
+        return objType;
+    }
+
+    /**
+     * @return Returns the map containing all content lines
+     */
+    public Map<String, Object> getContent() {
+        return content;
+    }
+
+    /**
+     * @return Returns the list of immediate VObject children of this instance
+     */
+    public List<VObject> getChildren() {
+        return children;
     }
     
 }
