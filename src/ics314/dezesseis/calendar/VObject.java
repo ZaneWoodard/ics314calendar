@@ -5,18 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ics314.dezesseis.calendar.constants.Classification;
+import ics314.dezesseis.calendar.constants.Component;
+
 public class VObject {
     //The following are constants used for .ics file output
     private final static String PRODID = "Team Dezessis - Calendaring Project";
     private final static String VERSION = "2.0"; //THe iCal spec version required
     private final static String CRLF = "\r\n"; //Used to terminate lines
 
-    private VObjectType objType;
+    private Component objType;
     private Map<String, Object> content;
    
     private List<VObject> children;
     
-    public VObject(VObjectType type) {
+    public VObject(Component type) {
         this.objType = type;
         this.content = new HashMap<String, Object>();
         this.children = new ArrayList<VObject>();
@@ -62,7 +65,7 @@ public class VObject {
         text.append("BEGIN:").append("V").append(objType.name()).append(CRLF);
         
         //Calendar types require additional header information
-        if(objType==VObjectType.CALENDAR) {
+        if(objType==Component.CALENDAR) {
             //Append the PRODID of the software
             text.append("PRODID:").append(PRODID).append(CRLF);
             //Append the version of the software
@@ -131,7 +134,7 @@ public class VObject {
     /**
      * @return Returns the type of the object, see VObjectType
      */
-    public VObjectType getObjType() {
+    public Component getObjType() {
         return objType;
     }
 

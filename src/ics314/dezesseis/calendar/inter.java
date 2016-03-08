@@ -7,14 +7,16 @@ import java.io.FileOutputStream;
 import java.util.Date;
 import java.util.Scanner;
 
+import ics314.dezesseis.calendar.constants.Component;
+
 public class inter {
     public static void main(String[] args) {
 
     	String input = "";
     	Scanner userInput =new Scanner(System.in);
     	InputCheck inputCheck = new InputCheck();
-        VObject calendar = new VObject(VObjectType.CALENDAR);
-        VObject event = new VObject(VObjectType.EVENT);
+        VObject calendar = new VObject(Component.CALENDAR);
+        VObject event = new VObject(Component.EVENT);
         do{
         System.out.print("Hello, do you want to create any Goolge calendar event,yes or no? y/n : ");
         input = userInput.nextLine(); 

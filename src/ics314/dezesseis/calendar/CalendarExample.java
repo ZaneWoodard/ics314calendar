@@ -3,14 +3,17 @@ package ics314.dezesseis.calendar;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
+
+import ics314.dezesseis.calendar.constants.Component;
+
 import java.io.FileOutputStream;
 
 
 public class CalendarExample {
     public static void main(String[] args) {
-        VObject calendar = new VObject(VObjectType.CALENDAR);
+        VObject calendar = new VObject(Component.CALENDAR);
         
-        VObject event = new VObject(VObjectType.EVENT);
+        VObject event = new VObject(Component.EVENT);
         
         Calendar start = Calendar.getInstance();
         start.set(2016, 2, 26, 10, 0, 0);

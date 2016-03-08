@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import ics314.dezesseis.calendar.VObject;
-import ics314.dezesseis.calendar.VObjectType;
+import ics314.dezesseis.calendar.constants.Component;
 
 public class VObjectTester {
 
@@ -17,7 +17,7 @@ public class VObjectTester {
     }
     @Test
     public void testInstantiation() {
-        for(VObjectType componentType : VObjectType.values()) {
+        for(Component componentType : Component.values()) {
             VObject component = new VObject(componentType);
             assertEquals(componentType, component.getObjType());
             assertNotNull(component.getChildren());
