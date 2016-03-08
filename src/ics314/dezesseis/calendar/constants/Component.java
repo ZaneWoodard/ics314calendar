@@ -1,6 +1,6 @@
-package ics314.dezesseis.calendar;
+package ics314.dezesseis.calendar.constants;
 
-public enum VObjectType {
+public enum Component {
     CALENDAR,
     EVENT,
     TODO,
