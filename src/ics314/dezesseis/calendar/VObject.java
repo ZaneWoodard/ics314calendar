@@ -109,7 +109,10 @@ public class VObject {
     public boolean addLocation(String location) {
         return addContentLine("LOCATION", location);
     }
-
+    public boolean addClassification(Classification classification) {        
+        return addContentLine("CLASS", classification);
+    }
+    
     /**
      * @return Returns the PRODID string constant
      */
