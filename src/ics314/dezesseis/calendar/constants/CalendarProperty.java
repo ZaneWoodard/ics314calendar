@@ -5,15 +5,23 @@ import java.util.Set;
 
 public enum CalendarProperty {
     
+    /*
+     * There are two ways to define a new CalendarProperty
+     * <NAME>("<NAME>", <global definition limit>, <valid scope list>...)
+     * The method above uses <global definition limit> as the definition limit for EVERY scope in the list of scopes
+     * <NAME>("<NAME>", bind(<valid scope>, <scope def limit>))
+     * Above method allows you to specify the definition limit for each valid scope, explicitely
+     */
     CLASSIFICATION("CLASS", 1, Component.EVENT, Component.TODO, Component.JOURNAL),
     LOCATION("LOCATION", 1, Component.EVENT, Component.TODO),
-    DESCRIPTION("DESCRIPTION",
-                bind(Component.EVENT, 1), bind(Component.TODO, 1), bind(Component.ALARM, 1),
-                bind(Component.JOURNAL, Integer.MAX_VALUE)),
     SUMMARY("SUMMARY", 1, Component.EVENT, Component.TODO, Component.JOURNAL, Component.ALARM),
     DTSTAMP("DTSTAMP", 1, Component.EVENT, Component.TODO, Component.JOURNAL, Component.FREEBUSY),
     DTEND("DTEND", 1, Component.EVENT, Component.FREEBUSY),
-    DTSTART("DTSTART", 1, Component.EVENT, Component.TODO, Component.FREEBUSY, Component.TIMEZONE);
+    DTSTART("DTSTART", 1, Component.EVENT, Component.TODO, Component.FREEBUSY, Component.TIMEZONE),
+    //SPECIAL CASE: Description can be defined unlimited times in VJOURNAL
+    DESCRIPTION("DESCRIPTION",
+            bind(Component.EVENT, 1), bind(Component.TODO, 1), bind(Component.ALARM, 1),
+            bind(Component.JOURNAL, Integer.MAX_VALUE));
     
     /** The name of the tag to appear in the text output */
     private String tag; 
