@@ -13,7 +13,11 @@ public class GEO {
 		this.location = location;
 		this.output="";
 	}
-	
+	/***********************************************
+	 * connect to google map and use the addree to find the position from google map
+	 * 
+	 * @return a string Latitude;Longitude
+	 * *******************************************/
 	private static String getLatLongPositions(String address) throws Exception
 	  {
 	    int responseCode = 0;
@@ -38,7 +42,7 @@ public class GEO {
         		 String longitude = stdout.readLine();
         		 longitude = longitude.replace("<lng>", "");
         		 longitude = longitude.replace("</lng>", "");
-        		 return latitude +","+ longitude.trim();
+        		 return latitude +";"+ longitude.trim();
         	 	}
         	  
           }
@@ -52,6 +56,7 @@ public class GEO {
 		
 	}
 	
+	//return the position that find from google map
 	public String getPosition() {
 		try {
 			
@@ -62,7 +67,7 @@ public class GEO {
 			// TODO Auto-generated catch block
 			System.out.println("ERROR");
 		}
-		return output;
+		return output.trim();
 	}
 		
 }
