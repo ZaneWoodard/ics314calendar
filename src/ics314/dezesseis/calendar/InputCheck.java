@@ -122,4 +122,23 @@ public class InputCheck {
 		input = input.trim();
 		return input;
 	}
+
+	public String CheckPosition(){
+		boolean done = false;
+		String output="";
+		while(!done){
+			try{
+				System.out.print("Please, enter Latitude: ");
+				float latF = Float.parseFloat(userInput.nextLine());
+				System.out.print("Please, enter Longitude: ");
+				float lonF = Float.parseFloat(userInput.nextLine());
+				NumberFormat formatter = new DecimalFormat("#0.000000"); 
+				output = formatter.format(latF) + ";" + formatter.format(lonF);
+				done = true;
+			}catch (NumberFormatException e) {
+				System.out.println("Error: Not a number.");
+			}
+		}
+		return output;
+	}
 }
