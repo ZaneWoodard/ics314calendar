@@ -31,17 +31,21 @@ public class VObject {
      * Method to add content lines to the object
      * Content lines have the format <NAME>:<VALUE>
      * In this case, dataLabel is <NAME> and data is <VALUE>
-     * @param property - the CalendaryProperty of the content line component, e.g. DTSTART
+     * @param dataLabel - the CalendaryProperty of the content line component, e.g. DTSTART
      * @param data - the value associated, e.g. 20160226T203000Z
      * @return true if the new content replaced existing content
      */
-    public boolean addContentLine(CalendarProperty property, Object data) {
-        if(property.getValidScopes().contains(this.objType)) {
+    public boolean addContentLine(String dataLabel, Object data) {
+        CalendarProperty property = CalendarProperty.getProperty(dataLabel);
+        
+        if(property==CalendarProperty.OTHER) { //No enforcement on tags not explicitly listed
+            return this.content.put(dataLabel, data)!=null;
+        } else if(property.getValidScopes().contains(this.objType)) { //Enforce scope rules
             return content.put(property.getTag(), data)!=null;
-        } else {
+        } else { //Tag being added to invalid scope
             throw new ScopeException(
                     String.format("Tried to add property %s to component %s but the component does not support this property!",
-                            property, this.getObjType()
+                            dataLabel, this.getObjType()
                     ));
         }
         
@@ -102,25 +106,25 @@ public class VObject {
     
     //The following are shortcut functions for addContentLines
     public boolean addDtStart(String dtstart) {
-        return addContentLine(CalendarProperty.DTSTART, dtstart);
+        return addContentLine("DTSTART", dtstart);
     }
     public boolean addDtEnd(String dtend) {
-        return addContentLine(CalendarProperty.DTEND, dtend);
+        return addContentLine("DTEND", dtend);
     }
     public boolean addDtStamp(String dtstamp) {
-        return addContentLine(CalendarProperty.DTSTAMP, dtstamp);
+        return addContentLine("DTSTAMP", dtstamp);
     }
     public boolean addSummary(String summary) {
-        return addContentLine(CalendarProperty.SUMMARY, summary);
+        return addContentLine("SUMMARY", summary);
     }
     public boolean addDescription(String description) {
-        return addContentLine(CalendarProperty.DESCRIPTION, description);
+        return addContentLine("DESCRIPTION", description);
     }
     public boolean addLocation(String location) {
-        return addContentLine(CalendarProperty.LOCATION, location);
+        return addContentLine("LOCATION", location);
     }
     public boolean addClassification(Classification classification) {        
-        return addContentLine(CalendarProperty.CLASSIFICATION, classification);
+        return addContentLine("CLASS", classification);
     }
     
     /**

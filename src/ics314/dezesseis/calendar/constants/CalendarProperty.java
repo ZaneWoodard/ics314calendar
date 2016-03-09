@@ -21,7 +21,8 @@ public enum CalendarProperty {
     //SPECIAL CASE: Description can be defined unlimited times in VJOURNAL
     DESCRIPTION("DESCRIPTION",
             bind(Component.EVENT, 1), bind(Component.TODO, 1), bind(Component.ALARM, 1),
-            bind(Component.JOURNAL, Integer.MAX_VALUE));
+            bind(Component.JOURNAL, Integer.MAX_VALUE)),
+    OTHER("OTHER", Integer.MAX_VALUE, Component.EVENT, Component.TODO, Component.JOURNAL, Component.ALARM, Component.FREEBUSY, Component.TIMEZONE);
     
     /** The name of the tag to appear in the text output */
     private String tag; 
@@ -45,6 +46,14 @@ public enum CalendarProperty {
         this.scopes = new HashMap<>();
         for(ScopeLimitBinding scopeLimitBinding : validScopes) {
             this.scopes.put(scopeLimitBinding.getScope(), scopeLimitBinding.getLimit());
+        }
+    }
+    
+    public static CalendarProperty getProperty(String name) {
+        try {
+            return valueOf(name);
+        } catch(IllegalArgumentException e) {
+            return OTHER;
         }
     }
 
