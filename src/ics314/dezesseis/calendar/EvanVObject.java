@@ -14,7 +14,7 @@ public class EvanVObject {
   private static String SUMMARY = "SUMMARY:";
   private static String fileName;
   private static String combine;
-
+  private static String position="GEO:";
   public VObject(String fileName) throws IOException{
     this.fileName = fileName;
   }
@@ -38,7 +38,9 @@ public class EvanVObject {
   public void setSUMMARY(String summary) {
     SUMMARY = SUMMARY + summary + "\n";
   }
-
+  public void setGEO(String position){
+    this.position += position+"\n";
+  }
   private static void catenate() {
     String BEGINC = "BEGIN:VCALENDAR\n";
     String PRODID = "PRODID:Team Dezessis - Calendaring Project\n";
@@ -48,7 +50,7 @@ public class EvanVObject {
     String END = "END:VEVENT\nEND:VCALENDAR\n";
     combine = BEGINC + PRODID + VERSION + CALSCALE;
     combine = combine + BEGIN + DTSTART + DTEND + DESCRIPTION;
-    combine = combine + LOCATION + SUMMARY + END;
+    combine = combine + LOCATION + position + SUMMARY + END;
   }
 
   public void write() throws IOException {
