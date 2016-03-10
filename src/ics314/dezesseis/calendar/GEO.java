@@ -9,15 +9,20 @@ import java.net.URLEncoder;
 public class GEO {
 	private String location;
 	private String output;
+	
+	//structure
 	public GEO(String location){
 		this.location = location;
 		this.output="";
 	}
-	/***********************************************
-	 * connect to google map and use the addree to find the position from google map
-	 * @param String address or name of locaton
-	 * @return a string-> Latitude;Longitude
-	 * *******************************************/
+	
+	
+	/*********************
+	 * connect to google map, send the address to the map to find the position
+	 * @param address
+	 * @return a String of "latitude;longitude" or "ERROR" google map cannot location the position;
+	 * @throws Exception
+	 **********************/
 	private static String getLatLongPositions(String address) throws Exception
 	  {
 	    int responseCode = 0;
@@ -51,16 +56,15 @@ public class GEO {
 	    return "ERROR";
 	  }
 	
-	/****************************************
-	 * set the position
-	 * @para string position
-	 * ************************************/
 	public void setPosition(String position){
 		output =position;
 		
 	}
 	
-	//return the position with ics file format that find from google map
+	/************************
+	 * return the position
+	 * @return .ics format position of location or ERROR for not found
+	 */
 	public String getPosition() {
 		try {
 			
@@ -71,7 +75,7 @@ public class GEO {
 			// TODO Auto-generated catch block
 			System.out.println("ERROR");
 		}
-		return output.trim();
+		return output;
 	}
 		
 }
