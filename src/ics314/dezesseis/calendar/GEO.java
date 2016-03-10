@@ -15,8 +15,8 @@ public class GEO {
 	}
 	/***********************************************
 	 * connect to google map and use the addree to find the position from google map
-	 * 
-	 * @return a string Latitude;Longitude
+	 * @param String address or name of locaton
+	 * @return a string-> Latitude;Longitude
 	 * *******************************************/
 	private static String getLatLongPositions(String address) throws Exception
 	  {
@@ -51,12 +51,16 @@ public class GEO {
 	    return "ERROR";
 	  }
 	
+	/****************************************
+	 * set the position
+	 * @para string position
+	 * ************************************/
 	public void setPosition(String position){
 		output =position;
 		
 	}
 	
-	//return the position that find from google map
+	//return the position with ics file format that find from google map
 	public String getPosition() {
 		try {
 			
