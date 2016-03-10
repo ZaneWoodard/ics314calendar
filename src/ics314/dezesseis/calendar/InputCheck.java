@@ -1,9 +1,60 @@
 package ics314.dezesseis.calendar;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import java.util.Scanner;
 
-public class InputCheck {
-	Scanner userInput =new Scanner(System.in);
 
+public class InputCheck {
+	Scanner userInput = new Scanner(System.in);
+
+	/*****************************************
+	 * check the beginning time is earlier than ending time  
+	 * @param begin : begin 
+	 * @param end
+	 * @return true (if begin date is earlier than end date) else return false
+	 * @error the format of param is wrong(yyyymmddThhmmss) and return false
+	 */
+	public boolean CheckBeginTimeAndEndTime(String begin,String end){
+		//yyyyMMddTHHmmss	
+		int t = begin.indexOf("T");
+		int t2 = end.indexOf("T");
+		if (t != -1&& t2 !=-1){
+			try{
+			//get the year/month/day from begin day
+			int beginDate = Integer.parseInt(begin.substring(0, t));
+			int endDate = Integer.parseInt(end.substring(0, t2));
+			//if end date is later than begin day than return True
+			if(endDate > beginDate)
+				return true;
+			else{
+				//if begin and end at same day then compare the time
+				if(endDate == beginDate){
+					int beginTime = Integer.parseInt(begin.substring(t+1));
+					int endTime = Integer.parseInt(end.substring(t2+1));
+					//compare the time 
+					//return true if end time is later than begin time
+					if (endTime >= beginTime)
+						return true;
+				}
+				System.out.println("Error: ending date cannot be earlier than begining date");
+			}
+			}catch(NumberFormatException e){
+				System.out.println("Error: Date formate is not correct.");
+				return false;
+			}
+		}
+		else
+			System.out.println("Error: Date formate is not correct.");
+		return false;
+	}
+	
+	/*********************************
+	 * checking the time format is or is not correct
+	 * @param String begin or end 
+	 * @return String time
+	 */
 	public String Checktime(String BETime){
 		String input = "";
 		boolean again = false;
@@ -17,13 +68,18 @@ public class InputCheck {
 					//check the time is or not integer
 					int num1 = Integer.parseInt(input.substring(0, 2));
 					int num2 = Integer.parseInt(input.substring(3, 5));
-					//if 
+					//
 					if(num1<0  || num1 >24 || num2<0 || num2>60){
 						again = true;
 						System.out.println("Error:only has 24 hours and 60 minutes");
 					}
 					else{
-						again = false;
+						if(num1==24 && num2>0){
+							System.out.println("Error: a day have only 24 hours.");
+							again = true;
+						}
+						else
+							again = false;							
 					}
 				}catch (NumberFormatException e) {
 					again = true;
@@ -40,6 +96,11 @@ public class InputCheck {
 		return input;
 	}
 	
+	/*********************************
+	 * checking the day format is or is not correct
+	 * @param String begin or end 
+	 * @return String date
+	 */
 	public String CheckDate(String BEDay){
 		String input = "";
 		boolean again = false;
@@ -94,7 +155,7 @@ public class InputCheck {
 		            case 9: case 11:
 		            	if(day<1 || day>30){
 		            		again = true;
-		            		System.out.println("Error: " + month+" has only 30 days.");
+		            		System.out.println("Error: " + month +" has only 30 days.");
 
 		            	}
 		            	else{        		
@@ -103,7 +164,7 @@ public class InputCheck {
 						break;
 					default:
 						again = true;
-						System.out.println("outor: Invalid month.");
+						System.out.println("Error: Invalid month.");
 						break;
 					}
 				}catch (NumberFormatException e) {
@@ -141,4 +202,6 @@ public class InputCheck {
 		}
 		return output;
 	}
+	
+	
 }
