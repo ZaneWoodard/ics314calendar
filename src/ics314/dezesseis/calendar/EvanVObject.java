@@ -1,4 +1,4 @@
-
+package ics314.dezesseis.calendar;
 import java.util.*;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -38,6 +38,7 @@ public class EvanVObject {
   public void setSUMMARY(String summary) {
     SUMMARY = SUMMARY + summary + "\n";
   }
+  //set GEO format
   public void setGEO(String position){
     this.position += position+"\n";
   }
