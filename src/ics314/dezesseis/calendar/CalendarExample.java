@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 
+import ics314.dezesseis.calendar.constants.Classification;
 import ics314.dezesseis.calendar.constants.Component;
 
 import java.io.FileOutputStream;
@@ -12,7 +13,6 @@ import java.io.FileOutputStream;
 public class CalendarExample {
     public static void main(String[] args) {
         VObject calendar = new VObject(Component.CALENDAR);
-        
         VObject event = new VObject(Component.EVENT);
         
         Calendar start = Calendar.getInstance();
@@ -25,7 +25,8 @@ public class CalendarExample {
         event.addDtStart(Utilities.dateToDtString(start.getTime()));
         event.addDtEnd(Utilities.dateToDtString(end.getTime()));
         event.addDtStamp(Utilities.dateToDtString(Calendar.getInstance().getTime()));
-        event.addLocation("ICS Lounge in POST");
+        event.addLocation("2563 Dole St");
+        event.addClassification(Classification.PUBLIC);
         
         calendar.addChild(event);
         
