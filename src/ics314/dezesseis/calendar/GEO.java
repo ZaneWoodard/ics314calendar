@@ -75,7 +75,7 @@ public class GEO {
 			// TODO Auto-generated catch block
 			System.out.println("ERROR");
 		}
-		return output;
+		return output.trim();
 	}
 		
 }
