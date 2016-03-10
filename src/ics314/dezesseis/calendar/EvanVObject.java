@@ -15,7 +15,7 @@ public class EvanVObject {
   private static String fileName;
   private static String combine;
   private static String position="GEO:";
-  public VObject(String fileName) throws IOException{
+  public EvanVObject(String fileName) throws IOException{
     this.fileName = fileName;
   }
 
