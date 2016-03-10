@@ -126,6 +126,9 @@ public class VObject {
     public boolean addClassification(Classification classification) {        
         return addContentLine("CLASS", classification);
     }
+    public boolean addGeo(String latlong) {
+        return addContentLine("GEO", latlong);
+    }
     
     /**
      * @return Returns the PRODID string constant
