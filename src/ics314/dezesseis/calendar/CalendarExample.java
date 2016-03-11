@@ -14,6 +14,7 @@ public class CalendarExample {
     public static void main(String[] args) {
         VObject calendar = new VObject(Component.CALENDAR);
         VObject event = new VObject(Component.EVENT);
+        calendar.addChild(event);
         
         Calendar start = Calendar.getInstance();
         start.set(2016, 2, 26, 10, 0, 0);
@@ -27,8 +28,7 @@ public class CalendarExample {
         event.addDtStamp(Utilities.dateToDtString(Calendar.getInstance().getTime()));
         event.addLocation("2563 Dole St");
         event.addClassification(Classification.PUBLIC);
-        
-        calendar.addChild(event);
+        event.addGeo(new GEO("2563 Dole St").getPosition()); //Asume no error
         
         //File out = new File("test.ics");
         File out = new File(System.getProperty("user.home")+"/Desktop/test.ics");
