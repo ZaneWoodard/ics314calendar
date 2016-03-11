@@ -184,18 +184,30 @@ public class InputCheck {
 		return input;
 	}
 
+	/**************************
+	 * 
+	 * @return string position
+	 */
 	public String CheckPosition(){
 		boolean done = false;
 		String output="";
+		System.out.println("Plase, enter latitude and longitude");
+		System.out.println("For example: 38°N = 38.0, 38.0°S = -38, 38.0°E = 38.0, 38.0°W = -38.0 ");
 		while(!done){
 			try{
-				System.out.print("Please, enter Latitude: ");
+				
+				System.out.print("Latitude: ");
 				float latF = Float.parseFloat(userInput.nextLine());
-				System.out.print("Please, enter Longitude: ");
+				System.out.print("Longitude: ");
 				float lonF = Float.parseFloat(userInput.nextLine());
-				NumberFormat formatter = new DecimalFormat("#0.000000"); 
-				output = formatter.format(latF) + ";" + formatter.format(lonF);
-				done = true;
+				//range of latitude [-90.90]
+				//range of longitude [-180,180]
+				if(latF >= -90 && latF <= 90 && lonF >= -180 && lonF <= 180){
+					NumberFormat formatter = new DecimalFormat("#0.000000"); 
+					output = formatter.format(latF) + ";" + formatter.format(lonF);
+					done = true;
+				}else
+					System.out.println("Latitude have range of -90 to 90 degree and longitude have range of -180 to 180");
 			}catch (NumberFormatException e) {
 				System.out.println("Error: Not a number.");
 			}
@@ -205,3 +217,4 @@ public class InputCheck {
 	
 	
 }
+
