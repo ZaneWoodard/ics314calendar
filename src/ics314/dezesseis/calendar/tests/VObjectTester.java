@@ -3,6 +3,7 @@ package ics314.dezesseis.calendar.tests;
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import org.junit.Test;
 
@@ -52,6 +53,17 @@ public class VObjectTester {
         VObject component = new VObject(Component.TODO);
         //Should fail, DTEND can't be added to a Component.TODO
         component.addContentLine("DTEND", "asadjhasjd");
+    }
+    
+    @Test
+    public void testGetProperty() {
+        VObject component = new VObject(Component.EVENT);
+        final String data = "ABC123";
+        for(CalendarProperty prop : CalendarProperty.values()) {
+            assertNull(component.getProperty(prop));
+            component.addContentLine(prop.getTag(), data);
+            assertEquals(data, component.getProperty(prop));
+        }
     }
 
     @Test
@@ -109,7 +121,11 @@ public class VObjectTester {
 
     @Test
     public void testAddDtStart() {
-        fail("Test not implemented!");
+        VObject component = new VObject(Component.EVENT);
+        Date now = new Date();
+        String dtNow = Utilities.dateToDtString(now);
+        component.addDtStart(dtNow);
+        assertEquals(dtNow, component.getProperty(CalendarProperty.DTSTART));
     }
 
     @Test
