@@ -164,6 +164,15 @@ public class VObject {
     public Map<String, Object> getContent() {
         return content;
     }
+    
+    /**
+     * Returns a specific property of the VObject
+     * @param property - the type to lookup
+     * @return String - the line mapped to in the VObject's content
+     */
+    public String getProperty(CalendarProperty property) {
+        return (String)content.get(property.getTag());
+    }
 
     /**
      * @return Returns the list of immediate VObject children of this instance
