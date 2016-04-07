@@ -89,17 +89,17 @@ public class GEO {
      */
     public String[] GreatCircleDistance(String position1, String position2) {
         String distance[] = new String[2];
-        int m1 = position1.indexOf(";");
-        int m2 = position2.indexOf(";");
+        double[] latLong1 = Utilities.positionToLatLong(position1);
+        double[] latLong2 = Utilities.positionToLatLong(position2);
         try {
             // latitude of position 1
-            double x1 = Math.toRadians(Double.parseDouble(position1.substring(0, m1)));
+            double x1 = Math.toRadians(latLong1[0]);
             // longitude of position 1
-            double y1 = Math.toRadians(Double.parseDouble(position1.substring(m1 + 1)));
+            double y1 = Math.toRadians(latLong1[1]);
             // latitude of position 2
-            double x2 = Math.toRadians(Double.parseDouble(position2.substring(0, m2)));
+            double x2 = Math.toRadians(latLong2[0]);
             // longitude of position 2
-            double y2 = Math.toRadians(Double.parseDouble(position2.substring(m2 + 1)));
+            double y2 = Math.toRadians(latLong2[1]);
             // great circle distance in radians
             double angle1 = Math.acos(Math.sin(x1) * Math.sin(x2) + Math.cos(x1) * Math.cos(x2) * Math.cos(y1 - y2));
             // convert back to degrees

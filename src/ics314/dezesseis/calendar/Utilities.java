@@ -53,4 +53,26 @@ public class Utilities {
         });
         return events;
     }
+    
+    /**
+     * 
+     * @param latitude
+     * @param longitude
+     * @return
+     */
+    public static String latLongToPosition(double latitude, double longitude) {
+        return latitude + ";" + longitude;
+    }
+    
+    /**
+     * 
+     * @param position
+     * @return
+     */
+    public static double[] positionToLatLong(String position) {
+        double[] latLong = new double[2];
+        latLong[0] = Double.parseDouble(position.split(";")[0]);
+        latLong[1] = Double.parseDouble(position.split(";")[1]);
+        return latLong;
+    }
 }
