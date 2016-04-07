@@ -79,9 +79,16 @@ public class GEO {
         }
         return "ERROR";
     }
-    
-    public String GreatCircle (String position1,String position2){
-    	String distance = null;
+    /************************************
+     * 
+     * @param position1
+     * @param position2
+     * @return array of String4
+     * 		   [0] distance in miles
+     *         [1] distance in km
+     */
+    public String[] GreatCircleDistance (String position1,String position2){
+    	String distance[] = new String[2];
     	int m1 = position1.indexOf(";");
     	int m2 = position2.indexOf(";");
     	try{
@@ -102,12 +109,16 @@ public class GEO {
             double r = 60 * 1.15078;
             //compute the distance in miles
             double distance1 = r * angle1;
-            distance = ""+ distance1;
+            distance[0] = ""+ distance1;
+            r = 60 * 1.852;
+            distance1 = r * angle1;
+            distance[1] = "" + distance1;
     	}
     	catch(NumberFormatException e){
-    		//do nothing 
+    		distance = null; 
     	}
     	return distance;
     }
+    
 
 }
