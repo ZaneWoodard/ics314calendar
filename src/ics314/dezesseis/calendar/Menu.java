@@ -1,16 +1,13 @@
 package ics314.dezesseis.calendar;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.io.FileOutputStream;
-import java.util.Date;
+import java.util.Map;
 import java.util.Scanner;
 import ics314.dezesseis.calendar.constants.Component;
-import ics314.dezesseis.calendar.constants.Classification;
 
 public class Menu {
     private static Scanner userInput = new Scanner(System.in);
+    // private ArrayList<VObject> events;
+    private VObject event1 = new VObject(Component.CALENDAR);
 
     public Menu() {
         CreateICSFile create = new CreateICSFile();
@@ -39,5 +36,17 @@ public class Menu {
         } while (input != 0);
         System.out.println("Thank yous, see you next time.");
         userInput.close();
+    }
+
+    private void listEvent() {
+        int size = event1.getListSize();
+        VObject event = null;
+        for (int i = 0; i < size; i++) {
+            event = event1.getEvent(i);
+            Map<String, Object> content = event.getContent();
+            System.out.println(content.get("Summary"));
+            System.out.println(content.get("DTSTART"));
+        }
+
     }
 }
