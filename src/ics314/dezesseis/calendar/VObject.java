@@ -69,6 +69,22 @@ public class VObject {
         children.remove(child);
     }
     
+    /************
+     * Tong add, the size of event list
+     * @return integer 
+     */
+    public int getListSize(){
+    	return children.size();
+    }
+    /*******
+     * Tong add, return the event of the index in the list
+     * @param index
+     * @return event
+     */
+    public VObject getEvent(int index){
+    	return children.get(index);
+    }
+    
     /**
      * Returns a String representing all the data of this object and its children
      * @return string - contains all the data associated with this object according to RFC 5545
