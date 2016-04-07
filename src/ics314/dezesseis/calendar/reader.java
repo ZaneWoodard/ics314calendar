@@ -73,7 +73,7 @@ public class reader {
     currEvent.addContentLine(attribute.substring(0, attribute.length() - 1), data);
   }
 
-  public list<VObject> getList() {
+  public List<VObject> getList() {
     return events;
   }
 
