@@ -1,9 +1,9 @@
-package ics314.dezesseis.calendar;
+//package ics314.dezesseis.calendar;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
-import ics314.dezesseis.calendar.constants.Component;
+//import ics314.dezesseis.calendar.constants.Component;
 
 public class reader {
 
@@ -46,6 +46,7 @@ public class reader {
         temp = br.readLine();
         if (temp.charAt(0) == ' ') {
           data = data + "\n " + temp;
+          //System.out.println(data);
           temp = br.readLine();
           while (true) {
             if (temp.charAt(0) == ' ') {
@@ -63,7 +64,7 @@ public class reader {
       } // end inner while
       line = br.readLine();
       events.add(currEvent);
-      System.out.println(currEvent.getTextRepresentation());
+      //System.out.println(currEvent.getTextRepresentation());
     } // end while
 
 
