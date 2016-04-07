@@ -21,7 +21,7 @@ public class GEO {
     /*********************
      * connect to google map, send the address to the map to find the position
      * @param address
-     * @return a String of "latitude;longitude" or "ERROR" google map cannot location the position;
+     * @return a String of "latitude(90);longitude(180)" or "ERROR" google map cannot location the position;
      * @throws Exception
      **********************/
     private static String getLatLongPositions(String address) throws Exception
@@ -78,6 +78,36 @@ public class GEO {
             e.printStackTrace();
         }
         return "ERROR";
+    }
+    
+    public String GreatCircle (String position1,String position2){
+    	String distance = null;
+    	int m1 = position1.indexOf(";");
+    	int m2 = position2.indexOf(";");
+    	try{
+    		//latitude of position 1
+    		double x1 = Math.toRadians(Double.parseDouble(position1.substring(0, m1)));
+    		//longitude of position 1
+            double y1 = Math.toRadians(Double.parseDouble(position1.substring(m1+1)));
+            //latitude of position 2
+            double x2 = Math.toRadians(Double.parseDouble(position2.substring(0, m2)));
+            //longitude of position 2
+            double y2 = Math.toRadians(Double.parseDouble(position2.substring(m2+1)));
+            // great circle distance in radians
+            double angle1 = Math.acos(Math.sin(x1) * Math.sin(x2) + Math.cos(x1) * Math.cos(x2) * Math.cos(y1 - y2));
+            // convert back to degrees
+            angle1 = Math.toDegrees(angle1);
+            // each degree on a great circle of Earth is 60 nautical miles
+            // 1 nautical miles= 1.15078 miles
+            double r = 60 * 1.15078;
+            //compute the distance in miles
+            double distance1 = r * angle1;
+            distance = ""+ distance1;
+    	}
+    	catch(NumberFormatException e){
+    		//do nothing 
+    	}
+    	return distance;
     }
 
 }
