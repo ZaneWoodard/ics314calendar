@@ -1,4 +1,4 @@
-package tests;
+package ics314.dezesseis.calendar.tests;
 
 import static org.junit.Assert.assertEquals;
 
