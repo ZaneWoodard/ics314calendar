@@ -1,9 +1,13 @@
-//package ics314.dezesseis.calendar;
+package ics314.dezesseis.calendar;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.io.*;
-//import ics314.dezesseis.calendar.constants.Component;
+
+import ics314.dezesseis.calendar.constants.Component;
 
 public class reader {
 
@@ -31,42 +35,37 @@ public class reader {
       VObject currEvent = new VObject(Component.EVENT);
       line = br.readLine();
       //traverse fields of event
-      while (!line.equals("END:VEVENT") && line != null) {
+      while (line != null && !line.equals("END:VEVENT")) {
         String temp = ""; // Holds next lines read
         String attribute = "";
-        String data = "";
-        int i = 0;
-
-        while (line.charAt(i) != ':' && line.charAt(i) != ';') {
-          i++;
-        } // end while
-        attribute = line.substring(0, i + 1);
-        data = line.substring(i + 1, line.length());
+        //StringBuilder is a much more efficient way to append strings together many times
+        StringBuilder data = new StringBuilder();
+        
+        String[] splitLine = line.split(":", 2);
+        attribute = splitLine[0];
+        if(splitLine.length==2) {
+            data.append(splitLine[1]);
+        }
 
         temp = br.readLine();
         if (temp.charAt(0) == ' ') {
-          data = data + "\n " + temp;
+          data.append("\n").append(temp);
           //System.out.println(data);
           temp = br.readLine();
-          while (true) {
-            if (temp.charAt(0) == ' ') {
-              data = data + "\n " + temp;
-              temp = br.readLine();
-            }
-            else {
-              break;
-            }
+          while (temp.charAt(0) == ' ') {
+            data.append("\n").append(temp);
+            temp = br.readLine();
           } // end while
         } // end if
         line = temp;
         //System.out.println("Data logged: " + attribute +  data);
-        set(currEvent, attribute, data);
+        set(currEvent, attribute, data.toString());
       } // end inner while
       line = br.readLine();
       events.add(currEvent);
       //System.out.println(currEvent.getTextRepresentation());
     } // end while
-
+    br.close();
 
   } // end read file
 
