@@ -18,12 +18,13 @@ public enum CalendarProperty {
     DTSTAMP("DTSTAMP", 1, Component.EVENT, Component.TODO, Component.JOURNAL, Component.FREEBUSY),
     DTEND("DTEND", 1, Component.EVENT, Component.FREEBUSY),
     DTSTART("DTSTART", 1, Component.EVENT, Component.TODO, Component.FREEBUSY, Component.TIMEZONE),
+    COMMENT("COMMENT", 1, Component.EVENT, Component.TODO, Component.FREEBUSY, Component.TIMEZONE),
     //SPECIAL CASE: Description can be defined unlimited times in VJOURNAL
     DESCRIPTION("DESCRIPTION",
             bind(Component.EVENT, 1), bind(Component.TODO, 1), bind(Component.ALARM, 1),
             bind(Component.JOURNAL, Integer.MAX_VALUE)),
     OTHER("OTHER", Integer.MAX_VALUE, Component.EVENT, Component.TODO, Component.JOURNAL, Component.ALARM, Component.FREEBUSY, Component.TIMEZONE);
-    
+
     /** The name of the tag to appear in the text output */
     private String tag; 
     

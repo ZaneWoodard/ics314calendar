@@ -145,6 +145,7 @@ public class VObject {
     public boolean addGeo(String latlong) {
         return addContentLine("GEO", latlong);
     }
+    public boolean addComment(String comment) { return addContentLine("COMMENT", comment); };
     
     /**
      * @return Returns the PRODID string constant
