@@ -1,10 +1,15 @@
-package ics314.dezesseis.calendar;
+package ics314.dezesseis.calendar.interfacecomponents;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import ics314.dezesseis.calendar.GEO;
+import ics314.dezesseis.calendar.Utilities;
+import ics314.dezesseis.calendar.VObject;
 import ics314.dezesseis.calendar.constants.Component;
+import ics314.dezesseis.calendar.interfacecomponents.CreateICSFile;
+import ics314.dezesseis.calendar.interfacecomponents.ReadICSFiles;
 
 public class Menu {
     private static Scanner userInput = new Scanner(System.in);

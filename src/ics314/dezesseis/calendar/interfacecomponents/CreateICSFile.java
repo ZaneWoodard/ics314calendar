@@ -1,4 +1,4 @@
-package ics314.dezesseis.calendar;
+package ics314.dezesseis.calendar.interfacecomponents;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,6 +6,10 @@ import java.text.SimpleDateFormat;
 import java.io.FileOutputStream;
 import java.util.Date;
 import java.util.Scanner;
+
+import ics314.dezesseis.calendar.GEO;
+import ics314.dezesseis.calendar.InputCheck;
+import ics314.dezesseis.calendar.VObject;
 import ics314.dezesseis.calendar.constants.Component;
 
 public class CreateICSFile {

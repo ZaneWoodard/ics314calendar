@@ -1,4 +1,7 @@
-package ics314.dezesseis.calendar;
+package ics314.dezesseis.calendar.interfacecomponents;
+
+import ics314.dezesseis.calendar.Reader;
+import ics314.dezesseis.calendar.VObject;
 
 import java.io.File;
 import java.io.IOException;
