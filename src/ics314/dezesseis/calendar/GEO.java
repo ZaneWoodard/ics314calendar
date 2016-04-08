@@ -131,12 +131,12 @@ public class GEO {
             VObject event2 = events.get(i+1);
 
             Double[] gcds = GreatCircleDistance(event1.getProperty(CalendarProperty.GEO), event2.getProperty(CalendarProperty.GEO));
-            event1.addComment(String.format("GCD DISTANCE %d(miles), %d(kilometers)", gcds[0], gcds[1]));
+            event1.addComment(String.format("GCD DISTANCE %.2f(miles), %.2f(kilometers)", gcds[0], gcds[1]));
             totalMiles += gcds[0];
             totalKilometers += gcds[1];
         }
 
-        events.get(events.size()).addComment(String.format("TOTAL GCD DISTANCE %d(miles), %d(kilometers)", totalMiles, totalKilometers));
+        events.get(events.size()-1).addComment(String.format("TOTAL GCD DISTANCE %.2f(miles), %.2f(kilometers)", totalMiles, totalKilometers));
 
         Double[] distances = {totalMiles, totalKilometers};
         return distances;

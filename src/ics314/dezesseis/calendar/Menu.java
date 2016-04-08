@@ -38,13 +38,14 @@ public class Menu {
                         Utilities.sortVObjectByStartDate(events);
                         Double[] distances = GEO.cumulativeGCD(events);
                         System.out.println("GDC computed for " + events.size() + " events:");
-                        System.out.print(distances[0] + " miles");
-                        System.out.print(distances[1] + " kilometers");
+                        System.out.println(distances[0] + " miles");
+                        System.out.println(distances[1] + " kilometers");
                         break;
 
                 }
             } catch (NumberFormatException e) {
                 System.out.println("ERROR: please enter a integer");
+                e.printStackTrace();
                 input = -1;
             }
         } while (input != 0);

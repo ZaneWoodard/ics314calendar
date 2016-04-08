@@ -11,13 +11,13 @@ public class driver {
       return;
     }
 
-    Evan VObject test = new VObject("test.ics");
+/*    Evan VObject test = new VObject("test.ics");
     test.setDTSTART(args[0]);
     test.setDTEND(args[1]);
     test.setDESCRIPTION(args[2]);
     test.setLOCATION(args[3]);
     test.setSUMMARY(args[4]);
-    test.write();
+    test.write();*/
 
   }
 }
