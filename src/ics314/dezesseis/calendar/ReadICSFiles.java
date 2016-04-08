@@ -16,9 +16,9 @@ public class ReadICSFiles {
             System.out.print("Please enter name of file to read: ");
             String fileName = cliReader.nextLine();
 
-            if(fileName.endsWith(".ics")) {
+            if(!fileName.endsWith(".ics")) {
                 System.out.println("Error! File not a .ics file!");
-            } else if((icsFileIn=new File(fileName)).exists()) {
+            } else if(!(icsFileIn=new File(fileName)).exists()) {
                 System.out.println("Error! File does not exist!");
             } else if(icsFileIn.isDirectory()) {
                 System.out.println("Error! Path is a directory not a file!");
