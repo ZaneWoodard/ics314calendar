@@ -1,11 +1,14 @@
 package ics314.dezesseis.calendar;
 
+import ics314.dezesseis.calendar.constants.CalendarProperty;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 
 public class GEO {
     private String location;
@@ -87,8 +90,8 @@ public class GEO {
      * @param position2
      * @return array of String4 [0] distance in miles [1] distance in km
      */
-    public String[] GreatCircleDistance(String position1, String position2) {
-        String distance[] = new String[2];
+    public static Double[] GreatCircleDistance(String position1, String position2) {
+        Double distance[] = new Double[2];
         double[] latLong1 = Utilities.positionToLatLong(position1);
         double[] latLong2 = Utilities.positionToLatLong(position2);
         try {
@@ -109,14 +112,34 @@ public class GEO {
             double r = 60 * 1.15078;
             // compute the distance in miles
             double distance1 = r * angle1;
-            distance[0] = "" + distance1;
+            distance[0] = distance1;
             r = 60 * 1.852;
             distance1 = r * angle1;
-            distance[1] = "" + distance1;
+            distance[1] = distance1;
         } catch (NumberFormatException e) {
             distance = null;
         }
         return distance;
+    }
+
+    public static Double[] cumulativeGCD(List<VObject> events) {
+        Utilities.sortVObjectByStartDate(events);
+        double totalMiles = 0;
+        double totalKilometers = 0;
+        for(int i = 0; i < events.size()-1; i++) {
+            VObject event1 = events.get(i);
+            VObject event2 = events.get(i+1);
+
+            Double[] gcds = GreatCircleDistance(event1.getProperty(CalendarProperty.LOCATION), event2.getProperty(CalendarProperty.LOCATION));
+            event1.addComment(String.format("GCD DISTANCE %d(miles), %d(kilometers)", gcds[0], gcds[1]));
+            totalMiles += gcds[0];
+            totalKilometers += gcds[1];
+        }
+
+        events.get(events.size()).addComment(String.format("TOTAL GCD DISTANCE %d(miles), %d(kilometers)", totalMiles, totalKilometers));
+
+        Double[] distances = {totalMiles, totalKilometers};
+        return distances;
     }
 
 }
