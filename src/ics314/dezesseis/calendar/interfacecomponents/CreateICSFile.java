@@ -13,12 +13,11 @@ import ics314.dezesseis.calendar.VObject;
 import ics314.dezesseis.calendar.constants.Component;
 
 public class CreateICSFile {
-	private static Scanner userInput =new Scanner(System.in);
-	
+
 	public CreateICSFile(){	
 	}
 	
-	public void start(){
+	public void start(Scanner cliInput){
         VObject event = new VObject(Component.EVENT);
 		InputCheck inputCheck = new InputCheck();
 		GEO GEOposition;
@@ -26,11 +25,11 @@ public class CreateICSFile {
 		
 		//ask the user: do he/she want to create a ics file	
 	     //if input no then exit program
-	     if(!YesOrNo("Hello, do you want to create any Goolge calendar event,yes or no? "))
+	     if(!YesOrNo("Hello, do you want to create any Goolge calendar event,yes or no? ", cliInput))
 	    	 System.exit(0);
 	     //input title of event
 	     System.out.print("Please, Enter a title of the evet: ");
-	     title = userInput.nextLine();
+	     title = cliInput.nextLine();
 	     
 	     //input the begin and end date and make sure that end date is later than begin time
 	     do{
@@ -41,15 +40,15 @@ public class CreateICSFile {
 	     }while(!inputCheck.CheckBeginTimeAndEndTime(begin, end));
 	     //input the location 
 	 	System.out.print("Please, enter the location of the event:");
-	    address = userInput.nextLine().trim();
+	    address = cliInput.nextLine().trim();
 
 	    //input geo position if use input yes;
-	    if(YesOrNo("Do you want to locate the position?: ")){
+	    if(YesOrNo("Do you want to locate the position?: ", cliInput)){
 	    	GEOposition = new GEO(address);
 	    	position = GEOposition.getPosition();
 	    	if(position.equalsIgnoreCase("ERROR")){
 	    		System.out.println("ERROR: Cannot find the position.");
-	    		if (YesOrNo("Do you want to enter the position?"))
+	    		if (YesOrNo("Do you want to enter the position?", cliInput))
 	    			position = inputCheck.CheckPosition();
 	    	}
 	    	else{
@@ -59,10 +58,8 @@ public class CreateICSFile {
 	    }
 	    System.out.println("Please, enter a description of the event:");
 	    System.out.print("->");
-       	String description = userInput.nextLine();
+       	String description = cliInput.nextLine();
        	description = description.trim();
-       	//close the user input
-       	userInput.close();
        	//input all data to event
     	event.addSummary(title);
        	event.addDescription(description);
@@ -79,11 +76,11 @@ public class CreateICSFile {
 	 * @param yes or no question that you want to ask 
 	 * @return true or false
 	 */
-	public static boolean YesOrNo(String question){
+	public static boolean YesOrNo(String question, Scanner cliInput){
 		String input;
 		do{
 			System.out.print(question+"(y/n): ");
-	        input = userInput.nextLine(); 
+	        input = cliInput.nextLine();
 	        if(input.equalsIgnoreCase("y"))
 	        	return true;
 	     }while(!input.equalsIgnoreCase("n"));

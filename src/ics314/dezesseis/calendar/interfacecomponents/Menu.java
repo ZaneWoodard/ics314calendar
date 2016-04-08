@@ -8,8 +8,6 @@ import ics314.dezesseis.calendar.GEO;
 import ics314.dezesseis.calendar.Utilities;
 import ics314.dezesseis.calendar.VObject;
 import ics314.dezesseis.calendar.constants.Component;
-import ics314.dezesseis.calendar.interfacecomponents.CreateICSFile;
-import ics314.dezesseis.calendar.interfacecomponents.ReadICSFiles;
 
 public class Menu {
     private static Scanner userInput = new Scanner(System.in);
@@ -19,6 +17,7 @@ public class Menu {
     public Menu() {
         CreateICSFile create = new CreateICSFile();
         int input;
+        boolean exit = false;
         do {
             System.out.println("Select your choice: ");
             System.out.println("1 -> create calendar events    2 -> read the .ics files");
@@ -30,8 +29,11 @@ public class Menu {
             try {
                 input = Integer.parseInt(userInput.nextLine());
                 switch (input) {
+                    case 0:
+                        exit = true;
+                        break;
                     case 1:
-                        create.start();
+                        create.start(userInput);
                         break;
                     case 2:
                         List<VObject> events = ReadICSFiles.start();
@@ -54,10 +56,9 @@ public class Menu {
                 }
             } catch (NumberFormatException e) {
                 System.out.println("ERROR: please enter a integer");
-                e.printStackTrace();
                 input = -1;
             }
-        } while (input != 0);
+        } while (!exit);
         System.out.println("Thank you, see you next time.");
         userInput.close();
     }
