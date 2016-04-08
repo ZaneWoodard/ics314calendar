@@ -130,7 +130,7 @@ public class GEO {
             VObject event1 = events.get(i);
             VObject event2 = events.get(i+1);
 
-            Double[] gcds = GreatCircleDistance(event1.getProperty(CalendarProperty.LOCATION), event2.getProperty(CalendarProperty.LOCATION));
+            Double[] gcds = GreatCircleDistance(event1.getProperty(CalendarProperty.GEO), event2.getProperty(CalendarProperty.GEO));
             event1.addComment(String.format("GCD DISTANCE %d(miles), %d(kilometers)", gcds[0], gcds[1]));
             totalMiles += gcds[0];
             totalKilometers += gcds[1];
