@@ -9,11 +9,11 @@ import java.util.List;
 
 import ics314.dezesseis.calendar.constants.Component;
 
-public class reader {
+public class Reader {
 
   private List<VObject> events;
 
-  public reader() {
+  public Reader() {
     events = new ArrayList<VObject>();
 
   }
