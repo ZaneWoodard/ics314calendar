@@ -14,6 +14,7 @@ public enum CalendarProperty {
      */
     CLASSIFICATION("CLASS", 1, Component.EVENT, Component.TODO, Component.JOURNAL),
     LOCATION("LOCATION", 1, Component.EVENT, Component.TODO),
+    GEO("GEO", 1, Component.EVENT, Component.TODO),
     SUMMARY("SUMMARY", 1, Component.EVENT, Component.TODO, Component.JOURNAL, Component.ALARM),
     DTSTAMP("DTSTAMP", 1, Component.EVENT, Component.TODO, Component.JOURNAL, Component.FREEBUSY),
     DTEND("DTEND", 1, Component.EVENT, Component.FREEBUSY),
