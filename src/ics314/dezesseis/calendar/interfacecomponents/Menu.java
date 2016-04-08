@@ -24,6 +24,7 @@ public class Menu {
             System.out.println("1 -> create calendar events    2 -> read the .ics files");
             System.out.println("3 -> list all events and time");
             System.out.println("4 -> find great circle distance");
+            System.out.println("5 -> save in-memory calendar to file");
             System.out.println("0 -> exit");
             System.out.print("enter your number -> ");
             try {
@@ -45,6 +46,9 @@ public class Menu {
                         System.out.println("GDC computed for " + events.size() + " events:");
                         System.out.println(distances[0] + " miles");
                         System.out.println(distances[1] + " kilometers");
+                        break;
+                    case 5:
+                        new SaveICSFile(calendar).start();
                         break;
 
                 }
