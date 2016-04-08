@@ -70,7 +70,7 @@ public class Reader {
   } // end read file
 
   private void set(VObject currEvent, String attribute, String data) {
-    currEvent.addContentLine(attribute.substring(0, attribute.length() - 1), data);
+    currEvent.addContentLine(attribute, data);
   }
 
   public List<VObject> getList() {
