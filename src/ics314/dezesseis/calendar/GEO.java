@@ -122,10 +122,17 @@ public class GEO {
         return distance;
     }
 
+    /**
+     * Calculates the great circle distance for all events in the input list
+     * If an even does not have a specified GEO(lat/long), it will be excluded from calculation
+     * @param events - a list of events to calculate the distance between
+     * @return the summation of all distances, index 0 in miles and index 1 in kilometers
+     */
     public static Double[] cumulativeGCD(List<VObject> events) {
         Utilities.sortVObjectByStartDate(events);
         double totalMiles = 0;
         double totalKilometers = 0;
+
         for(int i = 0; i < events.size()-1; i++) {
             VObject event1 = events.get(i);
             VObject event2 = events.get(i+1);
