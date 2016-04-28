@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.LinkedList;
 import java.util.List;
 
 public class GEO {
@@ -133,18 +134,22 @@ public class GEO {
         double totalMiles = 0;
         double totalKilometers = 0;
 
-        for(int i = 0; i < events.size()-1; i++) {
-            VObject event1 = events.get(i);
-            VObject event2 = events.get(i+1);
-
-            Double[] gcds = GreatCircleDistance(event1.getProperty(CalendarProperty.GEO), event2.getProperty(CalendarProperty.GEO));
-            event1.addComment(String.format("GCD DISTANCE %.2f(miles), %.2f(kilometers)", gcds[0], gcds[1]));
-            totalMiles += gcds[0];
-            totalKilometers += gcds[1];
+        LinkedList<VObject> eventsWithGeoDefined = new LinkedList<>();
+        for(VObject currentEvent : events) {
+            if (currentEvent.getProperty(CalendarProperty.GEO) != null) {
+                if (eventsWithGeoDefined.isEmpty()) {
+                    eventsWithGeoDefined.push(currentEvent);
+                } else {
+                    VObject lastEvent = eventsWithGeoDefined.pop();
+                    Double[] gcds = GreatCircleDistance(lastEvent.getProperty(CalendarProperty.GEO), currentEvent.getProperty(CalendarProperty.GEO));
+                    lastEvent.addComment(String.format("GCD DISTANCE %.2f(miles), %.2f(kilometers)", gcds[0], gcds[1]));
+                    totalMiles += gcds[0];
+                    totalKilometers += gcds[1];
+                    eventsWithGeoDefined.push(currentEvent);
+                }
+            }
         }
-
         events.get(events.size()-1).addComment(String.format("TOTAL GCD DISTANCE %.2f(miles), %.2f(kilometers)", totalMiles, totalKilometers));
-
         Double[] distances = {totalMiles, totalKilometers};
         return distances;
     }
