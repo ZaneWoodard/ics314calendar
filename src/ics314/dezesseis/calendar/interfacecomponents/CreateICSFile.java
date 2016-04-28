@@ -17,7 +17,7 @@ public class CreateICSFile {
 	public CreateICSFile(){	
 	}
 	
-	public void start(Scanner cliInput){
+	public VObject start(Scanner cliInput){
         VObject event = new VObject(Component.EVENT);
 		InputCheck inputCheck = new InputCheck();
 		GEO GEOposition;
@@ -67,8 +67,9 @@ public class CreateICSFile {
        	event.addDtEnd(end);
        	event.addDtStamp(CurrentTimeStamp());
        	event.addLocation(address);
+       	return event;
        	//calendar.addChild(event);
-       	WriteToICSFile(event, System.getProperty("user.home")+"/Desktop/test1.ics");
+       	//WriteToICSFile(event, System.getProperty("user.home")+"/Desktop/test1.ics");
 	}
 	
 	/****************************
