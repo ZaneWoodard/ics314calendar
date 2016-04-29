@@ -25,8 +25,6 @@ public class CreateICSFile {
 		
 		//ask the user: do he/she want to create a ics file	
 	     //if input no then exit program
-	     if(!YesOrNo("Hello, do you want to create any Goolge calendar event,yes or no? ", cliInput))
-	    	 System.exit(0);
 	     //input title of event
 	     System.out.print("Please, Enter a title of the evet: ");
 	     title = cliInput.nextLine();
