@@ -17,11 +17,6 @@ public class Menu {
     private VObject calendar = new VObject(Component.CALENDAR);
 
     public Menu() {
-        //Add timezone information to the current calendar object
-        VObject timezone = new VObject(Component.TIMEZONE);
-        timezone.addContentLine(CalendarProperty.TZID.getTag(), TimeZone.getDefault().getID());
-        timezone.addContentLine(CalendarProperty.TZNAME.getTag(), TimeZone.getDefault().getDisplayName());
-        calendar.addChild(timezone);
 
         CreateICSFile create = new CreateICSFile();
         int input;
@@ -53,9 +48,10 @@ public class Menu {
                     	int size = events.size();
                     	for(int i= 0; i <size; i++){
                     		 VObject event1 = events.get(i);
-                    		 System.out.println("event name :" + event1.getProperty(CalendarProperty.SUMMARY));
+                            if(event1.getObjType()==Component.EVENT) {
+                                System.out.println("Event name:" + event1.getProperty(CalendarProperty.SUMMARY));
+                            }
                     	}
-                    	System.out.println();
                         break;
                     case 4:
                         events = calendar.getChildren();

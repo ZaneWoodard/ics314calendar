@@ -1,9 +1,6 @@
 package ics314.dezesseis.calendar;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import ics314.dezesseis.calendar.constants.CalendarProperty;
 import ics314.dezesseis.calendar.constants.Classification;
@@ -90,12 +87,19 @@ public class VObject {
      * @return string - contains all the data associated with this object according to RFC 5545
      */
     public String getTextRepresentation() {
+
         StringBuilder text = new StringBuilder();
         //Add object begin content line
         text.append("BEGIN:").append("V").append(objType.name()).append(CRLF);
         
         //Calendar types require additional header information
         if(objType==Component.CALENDAR) {
+            //Add timezone information to the current calendar object
+            VObject timezone = new VObject(Component.TIMEZONE);
+            timezone.addContentLine(CalendarProperty.TZID.getTag(), TimeZone.getDefault().getID());
+            timezone.addContentLine(CalendarProperty.TZNAME.getTag(), TimeZone.getDefault().getDisplayName());
+            addChild(timezone);
+
             //Append the PRODID of the software
             text.append("PRODID:").append(PRODID).append(CRLF);
             //Append the version of the software
