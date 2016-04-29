@@ -41,13 +41,21 @@ public class Menu {
                         exit = true;
                         break;
                     case 1:
-                        create.start(userInput);
+                    	calendar.addChild(create.start(userInput));
+                        //calendar.add(create.start(userInput));
                         break;
                     case 2:
                         List<VObject> events = ReadICSFiles.start();
                         events.stream().forEach((VObject event) -> calendar.addChild(event));
                         break;
                     case 3:
+                    	events = calendar.getChildren();
+                    	int size = events.size();
+                    	for(int i= 0; i <size; i++){
+                    		 VObject event1 = events.get(i);
+                    		 System.out.println("event name :" + event1.getProperty(CalendarProperty.SUMMARY));
+                    	}
+                    	System.out.println();
                         break;
                     case 4:
                         events = calendar.getChildren();
