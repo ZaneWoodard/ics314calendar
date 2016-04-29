@@ -34,7 +34,6 @@ public class CalendarExample {
         File out = new File(System.getProperty("user.home")+"/Desktop/test.ics");
         try(FileOutputStream outStream = new FileOutputStream(out)) {
             outStream.write(calendar.getTextRepresentation().getBytes());
-            outStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

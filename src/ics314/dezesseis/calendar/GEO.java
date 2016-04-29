@@ -61,11 +61,6 @@ public class GEO {
         return "ERROR";
     }
 
-    public void setPosition(String position) {
-        output = position;
-
-    }
-
     /************************
      * return the position
      * 

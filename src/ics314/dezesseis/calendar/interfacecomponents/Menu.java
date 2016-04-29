@@ -3,7 +3,6 @@ package ics314.dezesseis.calendar.interfacecomponents;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.TimeZone;
 
 import ics314.dezesseis.calendar.GEO;
 import ics314.dezesseis.calendar.Utilities;
@@ -13,7 +12,6 @@ import ics314.dezesseis.calendar.constants.Component;
 
 public class Menu {
     private static Scanner userInput = new Scanner(System.in);
-    // private ArrayList<VObject> events;
     private VObject calendar = new VObject(Component.CALENDAR);
 
     public Menu() {
@@ -73,17 +71,5 @@ public class Menu {
         } while (!exit);
         System.out.println("Thank you, see you next time.");
         userInput.close();
-    }
-
-    private void listEvent() {
-        int size = calendar.getListSize();
-        VObject event = null;
-        for (int i = 0; i < size; i++) {
-            event = calendar.getEvent(i);
-            Map<String, Object> content = event.getContent();
-            System.out.println(content.get("Summary"));
-            System.out.println(content.get("DTSTART"));
-        }
-
     }
 }

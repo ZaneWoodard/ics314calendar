@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import ics314.dezesseis.calendar.VObject;
 import ics314.dezesseis.calendar.constants.CalendarProperty;
 
 public class Utilities {
@@ -32,7 +31,6 @@ public class Utilities {
      * Sorts a list of events in place according to the start times
      * @param events - the list to sort
      * @return events - the input list sorted in place
-     * @throws ParseException - Thrown when one of the start dates in an event could not be decoded
      */
     public static List<VObject> sortVObjectByStartDate(List<VObject> events) {
         

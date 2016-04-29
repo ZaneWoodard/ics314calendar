@@ -56,31 +56,7 @@ public class VObject {
     public void addChild(VObject child) {
         children.add(child);
     }
-    
-    /**
-     * Removes the provided VObject from the list of children of the object this method
-     * is called on.
-     * @param child - the VObject to remove
-     */
-    public void removeChild(VObject child) {
-        children.remove(child);
-    }
-    
-    /************
-     * Tong add, the size of event list
-     * @return integer 
-     */
-    public int getListSize(){
-    	return children.size();
-    }
-    /*******
-     * Tong add, return the event of the index in the list
-     * @param index
-     * @return event
-     */
-    public VObject getEvent(int index){
-    	return children.get(index);
-    }
+
     
     /**
      * Returns a String representing all the data of this object and its children
