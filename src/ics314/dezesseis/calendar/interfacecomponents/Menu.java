@@ -3,10 +3,12 @@ package ics314.dezesseis.calendar.interfacecomponents;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TimeZone;
 
 import ics314.dezesseis.calendar.GEO;
 import ics314.dezesseis.calendar.Utilities;
 import ics314.dezesseis.calendar.VObject;
+import ics314.dezesseis.calendar.constants.CalendarProperty;
 import ics314.dezesseis.calendar.constants.Component;
 
 public class Menu {
@@ -15,6 +17,12 @@ public class Menu {
     private VObject calendar = new VObject(Component.CALENDAR);
 
     public Menu() {
+        //Add timezone information to the current calendar object
+        VObject timezone = new VObject(Component.TIMEZONE);
+        timezone.addContentLine(CalendarProperty.TZID.getTag(), TimeZone.getDefault().getID());
+        timezone.addContentLine(CalendarProperty.TZNAME.getTag(), TimeZone.getDefault().getDisplayName());
+        calendar.addChild(timezone);
+
         CreateICSFile create = new CreateICSFile();
         int input;
         boolean exit = false;

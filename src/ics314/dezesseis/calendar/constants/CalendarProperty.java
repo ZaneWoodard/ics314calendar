@@ -24,6 +24,8 @@ public enum CalendarProperty {
     DESCRIPTION("DESCRIPTION",
             bind(Component.EVENT, 1), bind(Component.TODO, 1), bind(Component.ALARM, 1),
             bind(Component.JOURNAL, Integer.MAX_VALUE)),
+    TZID("TZID", 1, Component.TIMEZONE),
+    TZNAME("TZNAME", 1, Component.TIMEZONE),
     OTHER("OTHER", Integer.MAX_VALUE, Component.EVENT, Component.TODO, Component.JOURNAL, Component.ALARM, Component.FREEBUSY, Component.TIMEZONE);
 
     /** The name of the tag to appear in the text output */
