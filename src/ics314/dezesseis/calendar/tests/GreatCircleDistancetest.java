@@ -25,4 +25,14 @@ public class GreatCircleDistancetest {
 		assertEquals(distance[0], computeDistance[0]);
 		assertEquals(distance[1], computeDistance[1]);
 	}
+	@Test
+	public void TestGCD2(){
+		VObject calendar = new VObject(Component.CALENDAR);
+		List<VObject> events = ReadICSFiles.test();
+        events.stream().forEach((VObject event) -> calendar.addChild(event));
+        events = calendar.getChildren();
+        Utilities.sortVObjectByStartDate(events);
+        Double[] distances = GEO.cumulativeGCD(events);
+
+	}
 }
